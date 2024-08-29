@@ -137,3 +137,15 @@ class Formula1View(TemplateView):
         context['last_race_results'] = 'results'
         context['driver_standings'] = 'standings'
         return context
+
+class LeagueOfLegendsView(View):
+    template_name = 'lol.html'
+    def get(self, request):
+        context = {}
+        return render(request, self.template_name, context)
+
+class ValorantView(View):
+    template_name = 'valorant.html'
+    def get(self, request):
+        context = {}
+        return render(request, self.template_name, context)

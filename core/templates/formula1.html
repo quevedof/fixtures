@@ -7,14 +7,13 @@
 
 {% block content %}
     <div class="container mt-5">
-        <h1 class="text-center">{{race_details.name}}</h1>
-        <h3 class="text-center">{{race_details.datetime}}</h3>
+        <h1 class="text-center">{{next_race_details.name}}</h1>
+        <h2 class="text-center">{{next_race_details.datetime}}</h2>
         
         
-        <!-- Fixtures Table -->
-         
+        <!-- Starting Grid Table -->
         <div class="table-responsive mt-5" id="fixturesTable" style="display:block;">
-            <h2 class="text-center" id="clubHeader"> Starting Grid </h2>
+            <h3 class="text-center" id="clubHeader"> Starting Grid </h3>
             <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
@@ -33,6 +32,68 @@
                         <td>Charles Leclerc</td>
                         <td>Ferrari</td>
                         <td>1:53.754</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Last Race Results Table -->
+        <div class="table-responsive mt-5" id="fixturesTable" style="display:block;">
+            <h3 class="text-center" id="clubHeader"> Last Race Results - Name of GP </h3>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Pos</th>
+                        <th scope="col">No.</th>
+                        <th scope="col">Driver</th>
+                        <th scope="col">Car</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Points</th>
+
+                    </tr>
+                </thead>
+                <tbody id="fixturesBody">
+                    
+                    <tr>
+                        <td>1</td>
+                        <td>16</td>
+                        <td>Charles Leclerc</td>
+                        <td>Ferrari</td>
+                        <td>1:53.754</td>
+                        <td>26</td>
+
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Driver Standings Table -->
+        <div class="table-responsive mt-5" id="fixturesTable" style="display:block;">
+            <h3 class="text-center" id="clubHeader"> Championship Driver Standings </h3>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Pos</th>
+                        <th scope="col">No.</th>
+                        <th scope="col">Driver</th>
+                        <th scope="col">Nationality</th>
+                        <th scope="col">Car</th>
+                        <th scope="col">Points</th>
+
+                    </tr>
+                </thead>
+                <tbody id="fixturesBody">
+                    
+                    <tr>
+                        <td>1</td>
+                        <td>16</td>
+                        <td>Charles Leclerc</td>
+                        <td>Country</td>
+                        <td>Ferrari</td>
+                        <td>260</td>
+
                     </tr>
                     
                 </tbody>
