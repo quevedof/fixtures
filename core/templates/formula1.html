@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Formula 1</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center">{{race_details.name}}</h1>
+        <h3 class="text-center">{{race_details.datetime}}</h3>
+        
+        
+        <!-- Fixtures Table -->
+         
+        <div class="table-responsive mt-5" id="fixturesTable" style="display:block;">
+            <h2 class="text-center" id="clubHeader"> Starting Grid </h2>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Pos</th>
+                        <th scope="col">No.</th>
+                        <th scope="col">Driver</th>
+                        <th scope="col">Car</th>
+                        <th scope="col">Time</th>
+                    </tr>
+                </thead>
+                <tbody id="fixturesBody">
+                    
+                    <tr>
+                        <td>1</td>
+                        <td>16</td>
+                        <td>Charles Leclerc</td>
+                        <td>Ferrari</td>
+                        <td>1:53.754</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+{% endblock content %}
