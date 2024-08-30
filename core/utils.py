@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 # Get API key from environment variable
-RAPID_API_KEY = os.getenv('x-rapidapi-key')
+RAPID_API_KEY = os.getenv('RAPID_API_KEY')
 
 class FootballFixture():
     def __init__(self, club_name, venue, opponent, timestamp):
