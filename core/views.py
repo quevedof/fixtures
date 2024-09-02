@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import *
-from .utils import getFootballFixtures, getTennisFixtures, getF1RaceDetails, getATPList
+from .utils import getFootballFixtures, getTennisFixtures, getATPList, getF1RaceDetails, getF1DriverStandings, getF1LastRaceResults
 import traceback
 from django.views import View
 from django.views.generic import TemplateView
@@ -134,16 +134,18 @@ class Formula1View(TemplateView):
         context = super().get_context_data(**kwargs)
         context['next_race_details'] = getF1RaceDetails()
         context['starting_grid'] = 'grid'
-        context['last_race_results'] = 'results'
-        context['driver_standings'] = 'standings'
+        context['last_race_results'] = getF1LastRaceResults()
+        context['driver_standings'] = getF1DriverStandings()
         return context
 
+# league of legends view
 class LeagueOfLegendsView(View):
     template_name = 'lol.html'
     def get(self, request):
         context = {}
         return render(request, self.template_name, context)
 
+# valorant view
 class ValorantView(View):
     template_name = 'valorant.html'
     def get(self, request):
