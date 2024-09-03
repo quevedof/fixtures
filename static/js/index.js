@@ -48,7 +48,7 @@ $(document).ready(function() {
     checkForFixtures();
 
     // Check after results are requested
-    $('#getFixturesBtn').onclick(function() {
+    $('#getFixturesBtn').click(function() {
         checkForFixtures();
     });
 });

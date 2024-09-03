@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib import messages
 from .forms import *
-from .utils import getFootballFixtures, getTennisFixtures, getATPList, getF1RaceDetails, getF1DriverStandings, getF1LastRaceResults
+from .football import getFootballFixtures
+from .tennis import getTennisFixtures, getATPList
+from .formula1 import getF1RaceDetails, getF1DriverStandings, getF1LastRaceResults
 import traceback
 from django.views import View
 from django.views.generic import TemplateView
@@ -62,8 +65,19 @@ class FootballView(View):
             except KeyError:
                 pass
             return redirect('football')
-
     
+    # removes a fixtures table from the session
+    def delete(self, request):
+        data = json.loads(request.body)
+        try:
+            session_list = request.session["session_list_football"]
+            list_size = len(session_list)
+            # fixtures displayed in the template are reversed
+            session_list.pop(list_size-data['table_no'])
+            request.session.modified = True
+            return HttpResponse(status=200)
+        except:
+            return HttpResponse(status=500)
 
 # tennis view
 class TennisView(View):
@@ -125,7 +139,18 @@ class TennisView(View):
                 pass
             return redirect('tennis')
             
-    
+    # removes a fixtures table from the session
+    def delete(self, request):
+        data = json.loads(request.body)
+        try:
+            session_list = request.session["session_list_tennis"]
+            list_size = len(session_list)
+            # fixtures displayed in the template are reversed
+            session_list.pop(list_size-data['table_no'])
+            request.session.modified = True
+            return HttpResponse(status=200)
+        except:
+            return HttpResponse(status=500)
 
 # formula 1 view
 class Formula1View(TemplateView):

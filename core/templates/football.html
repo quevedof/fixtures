@@ -45,7 +45,13 @@
         <!-- Fixtures Table -->
         {% for fixtures_coll in all_fixtures %}
             <div class="table-responsive mt-5" id="fixturesTable" style="display:block;">
-                <h2 class="text-center" id="clubHeader"> {{fixtures_coll.0.club_name}} </h2>
+                <div class="d-flex justify-content-center align-items-center">
+                    <h2 class="mb-0" id="clubHeader">{{ fixtures_coll.0.club_name }}</h2>
+                    <!-- Button to remove the table -->
+                    <button class="btn btn-link ms-2" title="Remove Club" onclick="removeTable({{forloop.counter}})">
+                        <img src="{%  static 'img/minus-icon.png' %}" alt="Remove Table" width="20" height="20">
+                    </button>
+                </div>
                 <table class="table table-striped">
                     <thead class="table-dark">
                         <tr>
@@ -69,8 +75,6 @@
         {% endfor %}
     </div>
 
-
-    
 
     <script type="text/javascript" src="{% static 'js/football.js' %}"></script>
 
