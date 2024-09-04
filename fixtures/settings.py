@@ -134,7 +134,7 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_production')
-# Adds compressing and caching to static files for better performance
+# Adds compression and caching to static files for better performance
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
