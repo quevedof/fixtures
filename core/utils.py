@@ -3,8 +3,6 @@ import datetime # datetime module
 from datetime import datetime as dt # datetime class
 import os
 from dotenv import load_dotenv
-from django.utils import timezone
-import zoneinfo
 
 load_dotenv('../.env')
 # Get API key from environment variable
