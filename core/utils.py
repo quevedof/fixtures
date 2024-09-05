@@ -14,8 +14,9 @@ def getDate(timestamp):
     if isinstance(timestamp, dt):
         fixture_date = timestamp
     else:
-    # Get datetime object from int timestamp
+        # Get datetime object from int timestamp        
         fixture_date = dt.fromtimestamp(timestamp)
+
     # Format the datetime object
     formatted_date = 'Today, ' + fixture_date.strftime('%H:%M') if fixture_date.date() == dt.today().date() else fixture_date.strftime('%a, %d %b, %H:%M')
     return formatted_date
