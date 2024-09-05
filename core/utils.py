@@ -17,11 +17,13 @@ def getDate(timestamp):
         fixture_date = timestamp
     else:
         # Get datetime object from int timestamp
-        timezone.activate(zoneinfo.ZoneInfo('Europe/London'))
-        print(timezone.get_current_timezone())
+        #timezone.activate(zoneinfo.ZoneInfo('Europe/London'))
+        
 
         fixture_date = dt.fromtimestamp(timestamp)
+        print(fixture_date)
         tzed_fixture_date = timezone.localtime(timezone.make_aware(fixture_date))
+        print(timezone.get_current_timezone())
         print(tzed_fixture_date)
 
     # Format the datetime object
