@@ -3,6 +3,8 @@ import datetime # datetime module
 from datetime import datetime as dt # datetime class
 import os
 from dotenv import load_dotenv
+from django.utils import timezone
+
 
 load_dotenv('../.env')
 # Get API key from environment variable
@@ -14,8 +16,11 @@ def getDate(timestamp):
     if isinstance(timestamp, dt):
         fixture_date = timestamp
     else:
-    # Get datetime object from int timestamp
+        # Get datetime object from int timestamp
         fixture_date = dt.fromtimestamp(timestamp)
+        local_fixture_date = timezone.localtime(timezone.make_aware(fixture_date))
+        print(local_fixture_date)
+
     # Format the datetime object
     formatted_date = 'Today, ' + fixture_date.strftime('%H:%M') if fixture_date.date() == dt.today().date() else fixture_date.strftime('%a, %d %b, %H:%M')
     return formatted_date
