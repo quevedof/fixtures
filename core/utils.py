@@ -6,12 +6,9 @@ from dotenv import load_dotenv
 from django.utils import timezone
 import zoneinfo
 
-
 load_dotenv('../.env')
 # Get API key from environment variable
 RAPID_API_KEY = os.getenv('RAPID_API_KEY')
-# Change the Django timezone to London
-timezone.activate(zoneinfo.ZoneInfo('Europe/London'))
 
 # get date from the timestamp and format it
 def getDate(timestamp):
@@ -20,7 +17,12 @@ def getDate(timestamp):
         fixture_date = timestamp
     else:
         # Get datetime object from int timestamp
+        timezone.activate(zoneinfo.ZoneInfo('Europe/London'))
+        print(timezone.get_current_timezone())
+
         fixture_date = dt.fromtimestamp(timestamp)
+        tzed_fixture_date = timezone.localtime(timezone.make_aware(fixture_date))
+        print(tzed_fixture_date)
 
     # Format the datetime object
     formatted_date = 'Today, ' + fixture_date.strftime('%H:%M') if fixture_date.date() == dt.today().date() else fixture_date.strftime('%a, %d %b, %H:%M')
