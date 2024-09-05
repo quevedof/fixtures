@@ -4,11 +4,14 @@ from datetime import datetime as dt # datetime class
 import os
 from dotenv import load_dotenv
 from django.utils import timezone
+import zoneinfo
 
 
 load_dotenv('../.env')
 # Get API key from environment variable
 RAPID_API_KEY = os.getenv('RAPID_API_KEY')
+# Change the Django timezone to London
+timezone.activate(zoneinfo.ZoneInfo('Europe/London'))
 
 # get date from the timestamp and format it
 def getDate(timestamp):
@@ -18,8 +21,6 @@ def getDate(timestamp):
     else:
         # Get datetime object from int timestamp
         fixture_date = dt.fromtimestamp(timestamp)
-        local_fixture_date = timezone.localtime(timezone.make_aware(fixture_date))
-        print(local_fixture_date)
 
     # Format the datetime object
     formatted_date = 'Today, ' + fixture_date.strftime('%H:%M') if fixture_date.date() == dt.today().date() else fixture_date.strftime('%a, %d %b, %H:%M')
