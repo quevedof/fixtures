@@ -14,48 +14,53 @@ Hosted here: https://fixturesation.vercel.app/
 
 ### Prerequisites
 - Python 3.x
-- pip
 
 ### Installation
-Enable virtual environment (optional)
-```
-python -m venv .venv
-.venv/Scripts/activate
-```
-Install dependecies (ensure you're in the virutal environment)
-```
-pip install -r requirements.txt
-```
-API used is AllSportsAPI from Rapid API, can be found here: https://rapidapi.com/fluis.lacasse/api/allsportsapi2\
-Copy the env file and add the api key
-```
-cp -- .env.copythis .env
-```
-Changes needed to use Django's built-in DB for local development.\
-Ensure the following values are in the project's settings.py file 
-```python
-SECRET_KEY = <Django secret key>
-DEBUG = True
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+1. Clone the repository
+    ```
+    git clone https://github.com/quevedof/fixtures.git
+
+    cd fixtures
+    ```
+
+2. Enable virtual environment (optional)
+    ```
+    python -m venv .venv
+    .venv/Scripts/activate
+    ```
+3. Install dependecies
+    ```
+    pip install -r requirements.txt
+    ```
+4. API used is AllSportsAPI from Rapid API, can be found here: https://rapidapi.com/fluis.lacasse/api/allsportsapi2 \
+    Copy the env file and add your api key
+    ```
+    cp -- .env.copythis .env
+    ```
+5. Changes in the project's settings.py file to use Django's built-in DB for local development.
+    ```python
+    SECRET_KEY = <Django secret key>
+    DEBUG = True
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
-```
-To generate a Django secret key, open a Python shell in your project directory and run the following commands:
-```
-python3 manage.py shell
+    ```
+    To generate a Django secret key, open a Python shell in your project directory and run the following commands:
+    ```
+    python3 manage.py shell
 
-from django.core.management.utils import get_random_secret_key
-print(get_random_secret_key())
-```
-Run the server using django shortcuts
-```
-# Make migrations
-django mm
-django m
+    from django.core.management.utils import get_random_secret_key
+    print(get_random_secret_key())
+    ```
+6. Run the server using django shortcuts
+    ```
+    # Make migrations
+    django mm
+    django m
 
-# Run the server
-djang r
-```
+    # Run the server
+    djang r
+    ```
