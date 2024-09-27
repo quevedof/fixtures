@@ -62,5 +62,5 @@ Hosted here: https://fixturesation.vercel.app/
     django m
 
     # Run the server
-    djang r
+    django r
     ```
