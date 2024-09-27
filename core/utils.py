@@ -9,7 +9,7 @@ load_dotenv('../.env')
 RAPID_API_KEY = os.getenv('RAPID_API_KEY')
 
 # get date from the timestamp and format it
-def getDate(timestamp):
+def get_date(timestamp):
     # if datetime object is passed, it's ready to be formatted
     if isinstance(timestamp, dt):
         fixture_date = timestamp
@@ -75,9 +75,16 @@ def check_cache(cached_data, name, all_fixtures):
     # check if we're dealing with tennis or football fixtures
     elif not isinstance(cached_data[0], list):
         for cached_fixture in cached_data:
-            if cached_fixture.player_name == name:
-                all_fixtures.append(cached_fixture)
-                return True
+            # tennis
+            try:
+                if cached_fixture.player_name == name:
+                    all_fixtures.append(cached_fixture)
+                    return True
+            # lol
+            except AttributeError:
+                if cached_fixture.club_name == name:
+                    all_fixtures.append(cached_fixture)
+                    return True
         return False
     else:
         for cached_fixture_list in cached_data:

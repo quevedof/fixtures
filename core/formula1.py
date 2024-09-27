@@ -1,9 +1,9 @@
 import requests
 from datetime import timedelta, datetime as dt # datetime class
-from .utils import getDate
+from .utils import get_date
 
 # returns the race name and datetime for the next F1 race                
-def getF1RaceDetails():
+def get_F1_race_details():
     # jolpica-f1 API query
     race_details_json = requests.get('http://api.jolpi.ca/ergast/f1/current/next').json()
     race_name = race_details_json['MRData']['RaceTable']['Races'][0]['raceName']
@@ -16,12 +16,12 @@ def getF1RaceDetails():
     datetime_obj_BST = datetime_obj + timedelta(hours=1)
     race_details = {
         "name": race_name,
-        "datetime": getDate(datetime_obj_BST)
+        "datetime": get_date(datetime_obj_BST)
     }
     return race_details
 
 # returns the current championship standings
-def getF1DriverStandings():
+def get_F1_driver_standings():
     # get the current season
     current_season_json = requests.get('http://api.jolpi.ca/ergast/f1/current/').json()
     current_season = current_season_json['MRData']['RaceTable']['season']
@@ -49,7 +49,7 @@ def getF1DriverStandings():
     return driver_standings
 
 # returns results of the last F1 race
-def getF1LastRaceResults(): 
+def get_F1_last_race_results(): 
     # get results
     last_race_results_json = requests.get('http://api.jolpi.ca/ergast/f1/current/last/results/').json()
     race_name = last_race_results_json['MRData']['RaceTable']['Races'][0]['raceName']

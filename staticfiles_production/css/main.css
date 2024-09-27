@@ -43,3 +43,7 @@ footer {
     /* prevent horizontal scrollbar */
     overflow-x: hidden;
   }
+
+.custom-width-container {
+    max-width: 1000px;
+}

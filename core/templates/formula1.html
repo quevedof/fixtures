@@ -1,99 +1,65 @@
 {% extends 'index.html' %}
 {% load static %}
-
 {% block title %}
-    <title>Formula 1</title>
-{% endblock title %}
-
+  <title>Formula 1</title>
+{% endblock %} 
 {% block content %}
-    <div class="container mt-5">
-        <h1 class="text-center">{{next_race_details.name}}</h1>
-        <h2 class="text-center">{{next_race_details.datetime}}</h2>
-        
-        
-        <!-- Starting Grid Table -->
-        <div class="table-responsive mt-5" id="fixturesTable" style="display:block;">
-            <h3 class="text-center" id="clubHeader"> Starting Grid (Under Construction..)</h3>
-            <table class="table table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Pos</th>
-                        <th scope="col">Driver</th>
-                        <th scope="col">Car</th>
-                        <th scope="col">Time</th>
-                    </tr>
-                </thead>
-                <tbody id="fixturesBody">
-                    
-                    <tr>
-                        <td>N/A</td>
-                        <td>N/A</td>
-                        <td>N/A</td>
-                        <td>N/A</td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-        </div>
+  <div class="container mt-5 custom-width-container">
+    <h1 class="text-center">{{next_race_details.name}}</h1>
+    <h2 class="text-center">{{next_race_details.datetime}}</h2>
 
-        <!-- Last Race Results Table -->
-        <div class="table-responsive mt-5" id="fixturesTable" style="display:block;">
-            <h3 class="text-center" id="clubHeader"> Last Race Results - {{last_race_results.0.race_name}} </h3>
-            <table class="table table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Pos</th>
-                        <th scope="col">Driver</th>
-                        <th scope="col">Car</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Points</th>
-
-                    </tr>
-                </thead>
-                <tbody id="fixturesBody">
-                    {% for driver in last_race_results %}
-                        <tr>
-                            <td>{{driver.pos}}</td>
-                            <td>{{driver.driver}}</td>
-                            <td>{{driver.car}}</td>
-                            <td>{{driver.time}}</td>
-                            <td>{{driver.points}}</td>
-                        </tr>
-                    {% endfor %} 
-                    
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Driver Standings Table -->
-        <div class="table-responsive mt-5" id="fixturesTable" style="display:block;">
-            <h3 class="text-center" id="clubHeader"> Championship Driver Standings </h3>
-            <table class="table table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Pos</th>
-                        <th scope="col">Driver</th>
-                        <th scope="col">Nationality</th>
-                        <th scope="col">Car</th>
-                        <th scope="col">Points</th>
-
-                    </tr>
-                </thead>
-                <tbody id="fixturesBody">
-                    {% for driver in driver_standings %}
-                        <tr>
-                            <td>{{driver.pos}}</td>
-                            <td>{{driver.driver}}</td>
-                            <td>{{driver.nationality}}</td>
-                            <td>{{driver.car}}</td>
-                            <td>{{driver.points}}</td>
-                        </tr>
-                    {% endfor %}
-                    
-                </tbody>
-            </table>
-        </div>
-
-
+    <!-- Last Race Results Table -->
+    <div class="table-responsive mt-5" id="fixturesTable" style="display: block">
+      <h3 class="text-center" id="clubHeader">Last Race Results - {{last_race_results.0.race_name}}</h3>
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Pos</th>
+            <th scope="col">Driver</th>
+            <th scope="col">Car</th>
+            <th scope="col">Time</th>
+            <th scope="col">Points</th>
+          </tr>
+        </thead>
+        <tbody id="fixturesBody">
+          {% for driver in last_race_results %}
+            <tr>
+              <td>{{driver.pos}}</td>
+              <td>{{driver.driver}}</td>
+              <td>{{driver.car}}</td>
+              <td>{{driver.time}}</td>
+              <td>{{driver.points}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-{% endblock content %}
+
+    <!-- Driver Standings Table -->
+    <div class="table-responsive mt-5" id="fixturesTable" style="display: block">
+      <h3 class="text-center" id="clubHeader">Championship Driver Standings</h3>
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Pos</th>
+            <th scope="col">Driver</th>
+            <th scope="col">Nationality</th>
+            <th scope="col">Car</th>
+            <th scope="col">Points</th>
+          </tr>
+        </thead>
+        <tbody id="fixturesBody">
+          {% for driver in driver_standings %}
+            <tr>
+              <td>{{driver.pos}}</td>
+              <td>{{driver.driver}}</td>
+              <td>{{driver.nationality}}</td>
+              <td>{{driver.car}}</td>
+              <td>{{driver.points}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

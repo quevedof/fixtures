@@ -3,7 +3,7 @@ from django.core.cache import cache
 from datetime import datetime as dt
 import os
 from dotenv import load_dotenv
-from .utils import getDate, check_session_list, check_cache, cache_timeout
+from .utils import get_date, check_session_list, check_cache, cache_timeout
 
 
 load_dotenv('../.env')
@@ -16,10 +16,10 @@ class TennisFixture():
         self.tournament = tournament
         self.round = round
         self.opponent = opponent
-        self.date = getDate(timestamp) if isinstance(timestamp, int) else timestamp
+        self.date = get_date(timestamp) if isinstance(timestamp, int) else timestamp
 
 # returns the next tournament for the given player
-def getTennisFixtures(name, session_list):
+def get_tennis_fixtures(name, session_list):
     id_search_url = f"https://allsportsapi2.p.rapidapi.com/api/tennis/search/{name}"
     session_list, headers = check_session_list(name, session_list, id_search_url)
 
@@ -36,7 +36,7 @@ def getTennisFixtures(name, session_list):
         in_cache = check_cache(cached_data, player_name, all_fixtures)
 
 
-        if(not in_cache):
+        if not in_cache:
             # get fixtures using the player id
             fixture_url = f"https://allsportsapi2.p.rapidapi.com/api/tennis/player/{player_id}/events/next/0"
             fixture_response = requests.get(fixture_url, headers=headers)
@@ -49,12 +49,23 @@ def getTennisFixtures(name, session_list):
                 # tournament name
                 tournament = fixture_response_json["events"][0]["tournament"]["name"]
                 # round info
-                round = fixture_response_json["events"][0]["roundInfo"]["name"]
-
+                try:
+                    round = fixture_response_json["events"][0]["roundInfo"]["name"]
+                
+                # Exhibitions matches such as Laver Cup don't have round info
+                except KeyError:
+                    round = 'N/A'
                 # opponent
                 homeTeam = fixture_response_json["events"][0]["homeTeam"]["name"]
                 awayTeam = fixture_response_json["events"][0]["awayTeam"]["name"]
-                opponent = homeTeam if homeTeam != player_name else awayTeam
+
+                # if it's a doubles match, check if the player name is in the doubles name
+                if 'Double' in tournament:
+                    # remove the dot at the end of the name cause it's not included in the doubles name
+                    player_name = player_name[:-1]
+                    opponent = homeTeam if player_name not in homeTeam else awayTeam
+                else:
+                    opponent = homeTeam if homeTeam != player_name else awayTeam
 
                 # timestamp
                 timestamp = fixture_response_json["events"][0]["startTimestamp"]
@@ -67,7 +78,7 @@ def getTennisFixtures(name, session_list):
     return all_fixtures, session_list
 
 # gets the top 100 players in the ATP ranking
-def getATPList():
+def get_ATP_list():
     headers = {
         "x-rapidapi-key": RAPID_API_KEY,
         "x-rapidapi-host": "allsportsapi2.p.rapidapi.com"

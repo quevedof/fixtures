@@ -1,15 +1,15 @@
 import requests
 from django.core.cache import cache
-from .utils import getDate, check_session_list, check_cache, cache_timeout
+from .utils import get_date, check_session_list, check_cache, cache_timeout
 class FootballFixture():
     def __init__(self, club_name, venue, opponent, timestamp):
         self.club_name = club_name
         self.venue = venue
         self.opponent = opponent
-        self.date = getDate(timestamp)
+        self.date = get_date(timestamp)
 
 # returns the next 4 fixtures of the given football club 
-def getFootballFixtures(name, session_list):
+def get_football_fixtures(name, session_list):
     id_search_url = f"https://allsportsapi2.p.rapidapi.com/api/search/{name}"
     session_list, headers = check_session_list(name, session_list, id_search_url)
     
