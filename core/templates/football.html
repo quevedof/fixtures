@@ -4,7 +4,7 @@
   <title>Football</title>
 {% endblock %}
 {% block content %}
-  <div class="container mt-5 custom-width-container ">
+  <div class="container mt-5 custom-width-container">
     <h1 class="text-center">Search Football Fixtures</h1>
 
     <!-- Input Form -->
@@ -14,13 +14,13 @@
           {% csrf_token %}
           <div class="mb-3">
             <label for="clubName" class="form-label">Enter a Football Club Name:</label>
-            {{form.club_name}}
+            {{ form.club_name }}
           </div>
 
           <!-- Error messages in case fixtures could not get retrieved -->
           {% if messages %}
             {% for message in messages %}
-              <p class="messages">{{message}}</p>
+              <p class="messages">{{ message }}</p>
             {% endfor %}
           {% endif %}
 
@@ -40,7 +40,7 @@
     {% for fixtures_coll in all_fixtures %}
       <div class="table-responsive mt-5" id="fixturesTable" style="display: block">
         <div class="d-flex justify-content-center align-items-center">
-          <h2 class="mb-0" id="clubHeader">{{fixtures_coll.0.club_name}}</h2>
+          <h2 class="mb-0" id="clubHeader">{{ fixtures_coll.0.club_name }}</h2>
           <!-- Button to remove the table -->
           <button class="btn btn-link ms-2" title="Remove Club" onclick="removeTable({{ forloop.counter }})"><img src="{% static 'img/minus-icon.png' %}" alt="Remove Table" width="20" height="20" /></button>
         </div>
@@ -50,14 +50,16 @@
               <th scope="col">Date</th>
               <th scope="col">Opponent</th>
               <th scope="col">Venue</th>
+              <th scope="col">Tournament</th>
             </tr>
           </thead>
           <tbody id="fixturesBody">
             {% for fixture in fixtures_coll %}
               <tr>
-                <td>{{fixture.date}}</td>
-                <td>{{fixture.opponent}}</td>
-                <td>{{fixture.venue}}</td>
+                <td>{{ fixture.date }}</td>
+                <td>{{ fixture.opponent }}</td>
+                <td>{{ fixture.venue }}</td>
+                <td>{{ fixture.tournament }}</td>
               </tr>
             {% endfor %}
           </tbody>
