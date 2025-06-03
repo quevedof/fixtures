@@ -34,8 +34,13 @@ Hosted here: https://fixturesation.vercel.app/
     ```
 4. API used is AllSportsAPI from Rapid API, can be found here: https://rapidapi.com/fluis.lacasse/api/allsportsapi2 \
     Copy the env file and add your api key
+    Linux:
     ```
     cp -- .env.copythis .env
+    ```
+    Windows:
+    ```
+    copy .env.copythis .env
     ```
 5. Changes in the project's settings.py file to use Django's built-in DB for local development.
     ```python
